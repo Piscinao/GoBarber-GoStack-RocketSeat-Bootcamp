@@ -4,7 +4,8 @@ class Appointment {
   provider: string;
   date: Date;
 
-  constructor(provider: string, date: Date)
+  //Omit recebe os dois parametro e exclui uma propriedade
+  constructor({provider, date}: Omit<Appointment, 'id'>)
   {
     this.id = uuid();
     this.provider = provider;
