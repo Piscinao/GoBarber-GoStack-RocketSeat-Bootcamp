@@ -1,6 +1,7 @@
 import { isEqual } from 'date-fns';
-import Appointment from "../models/Appointment";
+import Appointment from '../models/Appointment';
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 interface CreateAppointmentDTO {
   provider: string;
   date: Date;
@@ -9,11 +10,11 @@ interface CreateAppointmentDTO {
 class AppointmentsRepository {
   private appointments: Appointment[];
 
-  constructor(){
+  constructor() {
     this.appointments = [];
   }
 
-  //Array de appointments
+  // Array de appointments
 
   public all(): Appointment[] {
     return this.appointments;
@@ -27,16 +28,13 @@ class AppointmentsRepository {
     return findAppointment || null;
   }
 
-
-  public create({provider, date}: CreateAppointmentDTO): Appointment {
-    const appointment = new Appointment({provider, date});
+  public create({ provider, date }: CreateAppointmentDTO): Appointment {
+    const appointment = new Appointment({ provider, date });
 
     this.appointments.push(appointment);
 
     return appointment;
   }
-
 }
-
 
 export default AppointmentsRepository;

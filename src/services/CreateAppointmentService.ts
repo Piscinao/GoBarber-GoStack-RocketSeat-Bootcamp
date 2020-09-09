@@ -2,6 +2,7 @@ import { startOfHour } from 'date-fns';
 import Appointment from '../models/Appointment';
 import AppointmentsRepository from '../repositories/AppointmentsRepository';
 
+// eslint-disable-next-line @typescript-eslint/naming-convention
 interface Request {
   provider: string;
   date: Date;
