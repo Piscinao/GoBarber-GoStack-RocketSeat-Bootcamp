@@ -1,16 +1,15 @@
-import { uuid } from 'uuidv4';
-class Appointment {
-  id: string;
-  provider: string;
-  date: Date;
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-  //Omit recebe os dois parametro e exclui uma propriedade
-  constructor({provider, date}: Omit<Appointment, 'id'>)
-  {
-    this.id = uuid();
-    this.provider = provider;
-    this.date = date;
-  }
+@Entity('appointments')
+class Appointment {
+  @PrimaryGeneratedColumn('uuid')
+  id: string;
+
+  @Column()
+  provider: string;
+
+  @Column('time with time zone')
+  date: Date;
 }
 
 export default Appointment;
