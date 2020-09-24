@@ -1,7 +1,9 @@
 import { compare } from 'bcryptjs';
 /* eslint-disable @typescript-eslint/naming-convention */
 import { getRepository } from 'typeorm';
+import { sign } from 'jsonwebtoken';
 import User from '../models/User';
+import authConfig from '../config/auth';
 
 interface Request {
   email: string;
@@ -10,6 +12,7 @@ interface Request {
 
 interface Response {
   user: User;
+  token: string;
 }
 
 class AuthenticateUserService {
@@ -19,7 +22,7 @@ class AuthenticateUserService {
     const user = await usersRepository.findOne({ where: { email } });
 
     if (!user) {
-      throw new Error('Incorrect email/password combination.');
+      throw new Error('Incorrect email/combination.');
     }
 
     // user.password -  password crypt
@@ -29,8 +32,17 @@ class AuthenticateUserService {
       throw new Error('Incorrect email/password combination.');
     }
 
+    // paylod informações que irá precisar no front end caso precise
+
+    const { secret, expiresIn } = authConfig.jwt;
+    const token = sign({}, secret, {
+      subject: user.id,
+      expiresIn,
+    });
+
     return {
       user,
+      token,
     };
   }
 }
