@@ -8,6 +8,14 @@ import UpdateUserAvatarService from '../services/UpdateUserAvatarService';
 const usersRouter = Router();
 const upload = multer(uploadConfig);
 
+// usersRouter.get('/', async (request, response) => {
+//   console.log(request.user);
+//   const userRepository = getCustomRepository(AppointmentsRepository);
+//   const appointments = await appointmentsRepository.find();
+
+//   return response.json(appointments);
+// });
+
 usersRouter.post('/', async (request, response) => {
   const { name, email, password } = request.body;
 
