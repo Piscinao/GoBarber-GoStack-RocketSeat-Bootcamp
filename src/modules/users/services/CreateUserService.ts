@@ -1,7 +1,7 @@
 import { getRepository } from 'typeorm';
 import { hash } from 'bcryptjs';
-import User from '../models/User';
-import AppError from '../errors/AppError';
+import AppError from '@shared/errors/AppError';
+import User from '../infra/typeorm/entities/User';
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 interface Request {
