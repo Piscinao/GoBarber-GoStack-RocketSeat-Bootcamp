@@ -1,12 +1,10 @@
-/* eslint-disable camelcase */
-
 import { startOfHour } from 'date-fns';
 import { getCustomRepository } from 'typeorm';
 import AppError from '@shared/errors/AppError';
 import Appointment from '../infra/typeorm/entities/Appointment';
-import AppointmentsRepository from '../repositories/AppointmentsRepository';
+import AppointmentsRepository from '../infra/typeorm/repositories/AppointmentsRepository';
 
-// eslint-disable-next-line @typescript-eslint/naming-convention
+
 interface Request {
   provider_id: string;
   date: Date;
