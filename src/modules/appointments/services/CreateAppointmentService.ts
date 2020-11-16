@@ -1,4 +1,5 @@
 import { startOfHour } from 'date-fns';
+import { injectable, inject } from 'tsyringe';
 import AppError from '@shared/errors/AppError';
 import Appointment from '../infra/typeorm/entities/Appointment';
 
@@ -13,10 +14,15 @@ interface IRequest {
   date: Date;
 }
 
+// toda a classe com injeção de dependecia depente do injectable
+@injectable()
 class CreateAppointmentService {
   // private appointmentsRepository: IAppointmentsRepository;
 
-  constructor(private appointmentsRepository: IAppointmentsRepository) {}
+  constructor(
+    @inject('AppointmentsRepostiry')
+    private appointmentsRepository: IAppointmentsRepository,
+  ) {}
 
   // Toda vez que tem uma função assincrona retorna uma promise
   // eslint-disable-next-line camelcase
