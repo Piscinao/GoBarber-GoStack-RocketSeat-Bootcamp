@@ -20,7 +20,7 @@ class CreateAppointmentService {
   // private appointmentsRepository: IAppointmentsRepository;
 
   constructor(
-    @inject('AppointmentsRepostiry')
+    @inject('AppointmentsRepository')
     private appointmentsRepository: IAppointmentsRepository,
   ) {}
 
