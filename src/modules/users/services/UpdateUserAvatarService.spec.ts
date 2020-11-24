@@ -50,7 +50,7 @@ describe('UpdateUserAvatar', () => {
     // salva na memoria pois chama o repositorio fake diretamente
     const fakeUsersRepository = new FakeUsersRepository();
     const fakeStorageProvider = new FakeStorageProvider();
-
+    // spy para saber se um método dentro de uma classe foi chamada
     const deleteFile = jest.spyOn(fakeStorageProvider, 'deleteFile');
 
     const updateUserAvatar = new UpdateUserAvatarService(
