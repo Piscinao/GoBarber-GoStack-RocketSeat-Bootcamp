@@ -15,7 +15,7 @@ const app = express();
 // evita que sites não autorizados tenham acesso
 app.use(cors());
 app.use(express.json());
-app.use('/files', express.static(uploadConfig.directory));
+app.use('/files', express.static(uploadConfig.uploadsFolder));
 app.use(routes);
 
 // Middlewares para tratativa de erro no express sãs obrigados a terem 4 parâmentros
