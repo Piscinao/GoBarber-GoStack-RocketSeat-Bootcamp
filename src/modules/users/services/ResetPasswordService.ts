@@ -1,6 +1,6 @@
-import AppError from '@shared/errors/AppError';
 import { injectable, inject } from 'tsyringe';
-
+import { isAfter, addHours } from 'date-fns';
+import AppError from '@shared/errors/AppError';
 import IUsersRepository from '../repositories/IUsersRepository';
 import IUserTokensRepository from '../repositories/IUserTokensRepository';
 import IHashProvider from '../providers/HashProvider/models/IHashProvider';
@@ -34,6 +34,15 @@ class ResetPasswordService {
 
     if (!user) {
       throw new AppError('User does not exists');
+    }
+
+    // verifica se o token criado mais de 2 horas
+
+    const tokenCreatedAt = userToken.created_at;
+    const compareDate = addHours(tokenCreatedAt, 2);
+    // data atual for dps do comparedate+ 2 horas
+    if (isAfter(Date.now(), compareDate)) {
+      throw new AppError('Token expired');
     }
 
     user.password = await this.hashProvider.generateHash(password);
