@@ -1,4 +1,6 @@
+import ISendMailDTO from '../dtos/ISendMailDTO';
+
 export default interface IMailProvider {
   // Promise -- envio de email demora - conseguir aguardar o email ser enviado
-  sendMail(to: string, body: string): Promise<void>;
+  sendMail(data: ISendMailDTO): Promise<void>;
 }
