@@ -4,6 +4,6 @@ interface ITemplateVariables {
 
 // passar a variavel qualquer coisa para o objeto key
 export default interface IParseMailTemplateDTO {
-  template: string;
+  file: string;
   variables: ITemplateVariables;
 }
