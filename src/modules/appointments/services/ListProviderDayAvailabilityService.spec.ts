@@ -2,17 +2,17 @@ import FakeAppointmentsRepository from '../repositories/fakes/FakeAppointmentsRe
 import ListProviderDayAvailabilityService from './ListProviderDayAvailabilityService';
 
 let fakeAppointmentsRepository: FakeAppointmentsRepository;
-let listProviderDayAvailabilityService: ListProviderDayAvailabilityService;
+let listProviderDayAvailability: ListProviderDayAvailabilityService;
 
-describe('ListProviderDayAvailabilityService', () => {
+describe('ListProviderMonthAvailability', () => {
   beforeEach(() => {
     fakeAppointmentsRepository = new FakeAppointmentsRepository();
-    listProviderDayAvailabilityService = new ListProviderDayAvailabilityService(
+    listProviderDayAvailability = new ListProviderDayAvailabilityService(
       fakeAppointmentsRepository,
     );
   });
 
-  it('should be able update to list the day availabity from provider', async () => {
+  it('should be able to list the day availability from provider', async () => {
     await fakeAppointmentsRepository.create({
       provider_id: 'user',
       date: new Date(2020, 4, 20, 14, 0, 0),
@@ -20,15 +20,14 @@ describe('ListProviderDayAvailabilityService', () => {
 
     await fakeAppointmentsRepository.create({
       provider_id: 'user',
-      date: new Date(2020, 4, 21, 15, 0, 0),
+      date: new Date(2020, 4, 20, 15, 0, 0),
     });
 
-    // função retornar um valor ficticio
     jest.spyOn(Date, 'now').mockImplementationOnce(() => {
       return new Date(2020, 4, 20, 11).getTime();
     });
 
-    const availability = await listProviderDayAvailabilityService.execute({
+    const availability = await listProviderDayAvailability.execute({
       provider_id: 'user',
       year: 2020,
       month: 5,
@@ -46,6 +45,5 @@ describe('ListProviderDayAvailabilityService', () => {
         { hour: 16, available: true },
       ]),
     );
-    return availability;
   });
 });
