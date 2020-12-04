@@ -1,12 +1,16 @@
 import Appointment from '../infra/typeorm/entities/Appointment';
 import ICreateAppointmentDTO from '../dtos/ICreateAppointmentDTO';
-import IFindAllInMonthFromPoviderDTO from '../dtos/IFindAllInMonthProviderDTO';
+import IFindAllInMonthFromProviderDTO from '../dtos/IFindAllInMonthFromProviderDTO';
+import IFindAllInDayFromProviderDTO from '../dtos/IFindAllInDayFromProviderDTO';
 
 export default interface IAppointmentsAppointments {
   // recebe informações e retorna o appointment criado CRIA E SALVA demora um pouco então é uma promise
   create(data: ICreateAppointmentDTO): Promise<Appointment>;
   findByDate(date: Date): Promise<Appointment | undefined>;
-  findAllInMonthProvider(
-    data: IFindAllInMonthFromPoviderDTO,
+  findAllInMonthFromProvider(
+    data: IFindAllInMonthFromProviderDTO,
+  ): Promise<Appointment[]>;
+  findAllInDayFromProvider(
+    data: IFindAllInDayFromProviderDTO,
   ): Promise<Appointment[]>;
 }
