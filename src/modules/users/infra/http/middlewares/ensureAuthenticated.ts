@@ -3,7 +3,7 @@ import { verify } from 'jsonwebtoken';
 import authConfig from '@config/auth';
 import AppError from '@shared/errors/AppError';
 
-interface TokenPayload {
+interface ITokenPayload {
   iat: number;
   ex: number;
   sub: string;
@@ -27,7 +27,7 @@ export default function ensureAuthenticated(
 
     // pega do interface pega o payload via decoded
 
-    const { sub } = decoded as TokenPayload;
+    const { sub } = decoded as ITokenPayload;
 
     // substituição de tipos do express informação de user dentro do request @types
     request.user = {

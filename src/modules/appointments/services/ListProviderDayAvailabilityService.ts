@@ -40,6 +40,7 @@ class ListProviderDayAvailabilityService {
     const hourStart = 8;
 
     const eachHourArray = Array.from(
+      // tamanho de 10 por que das 8 as 6 são 10 horas disponiveis
       { length: 10 },
       (_, index) => index + hourStart,
     );

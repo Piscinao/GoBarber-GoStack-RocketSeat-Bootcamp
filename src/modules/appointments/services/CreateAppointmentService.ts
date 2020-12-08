@@ -11,6 +11,7 @@ import IAppointmentsRepository from '../repositories/IAppointmentsRepository';
 
 interface IRequest {
   provider_id: string;
+  user_id: string;
   date: Date;
 }
 
@@ -26,7 +27,11 @@ class CreateAppointmentService {
 
   // Toda vez que tem uma função assincrona retorna uma promise
   // eslint-disable-next-line camelcase
-  public async execute({ date, provider_id }: IRequest): Promise<Appointment> {
+  public async execute({
+    date,
+    provider_id,
+    user_id,
+  }: IRequest): Promise<Appointment> {
     // Verify appointment
     const appointmentDate = startOfHour(date);
 
@@ -40,6 +45,7 @@ class CreateAppointmentService {
 
     const appointment = await this.appointmentsRepository.create({
       provider_id,
+      user_id,
       date: appointmentDate,
     });
     return appointment;
