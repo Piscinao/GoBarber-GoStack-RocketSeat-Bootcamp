@@ -11,13 +11,12 @@ export default class AppointmentsController {
     const user_id = request.user.id;
     const { provider_id, date } = request.body;
     // String to Date
-    const parsedDate = parseISO(date);
 
     // toda a vez que for utilizar o service passa o repositorio como parâmetro
     const createAppointment = container.resolve(CreateAppointmentService);
 
     const appointment = await createAppointment.execute({
-      date: parsedDate,
+      date,
       provider_id,
       user_id,
     });
