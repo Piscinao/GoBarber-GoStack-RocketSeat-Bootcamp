@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-import { parseISO } from 'date-fns';
 import { container } from 'tsyringe';
 
 // Controllers astraem a lógica das rotas, recebe requisição repassa para outro arquivo resolver e recebe as respostas

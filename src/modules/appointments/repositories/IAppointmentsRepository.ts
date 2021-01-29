@@ -6,7 +6,7 @@ import IFindAllInDayFromProviderDTO from '../dtos/IFindAllInDayFromProviderDTO';
 export default interface IAppointmentsAppointments {
   // recebe informações e retorna o appointment criado CRIA E SALVA demora um pouco então é uma promise
   create(data: ICreateAppointmentDTO): Promise<Appointment>;
-  findByDate(date: Date): Promise<Appointment | undefined>;
+  findByDate(date: Date, provider_id: string): Promise<Appointment | undefined>;
   findAllInMonthFromProvider(
     data: IFindAllInMonthFromProviderDTO,
   ): Promise<Appointment[]>;
