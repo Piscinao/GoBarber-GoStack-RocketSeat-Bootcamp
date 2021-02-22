@@ -3,6 +3,7 @@ import { injectable, inject } from 'tsyringe';
 import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import User from '@modules/users/infra/typeorm/entities/User';
+import { classToClass } from 'class-transformer';
 
 interface IRequest {
   user_id: string;
@@ -23,14 +24,19 @@ class ListProvidersService {
       `providers-list:${user_id}`,
     );
 
+    // let users;
+
     if (!users) {
       users = await this.usersRepository.findAllProviders({
         except_user_id: user_id,
       });
 
-      console.log('query feita');
+      // console.log('query feita');
 
-      await this.cacheProvider.save(`providers-list:${user_id}`, users);
+      await this.cacheProvider.save(
+        `providers-list:${user_id}`,
+        classToClass(users),
+      );
     }
 
     return users;
