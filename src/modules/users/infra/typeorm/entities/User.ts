@@ -10,7 +10,6 @@ import {
 import uploadConfig from '@config/upload';
 
 import { Exclude, Expose } from 'class-transformer';
-import upload from '@config/upload';
 
 @Entity('users')
 class User {
@@ -29,6 +28,9 @@ class User {
 
   @Column()
   avatar: string;
+
+  @Column()
+  isprovider: boolean;
 
   @CreateDateColumn()
   created_at: Date;
